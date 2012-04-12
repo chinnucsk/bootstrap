@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/tests/jasmine/jasmine.css">
+    <script type="text/javascript" src="/minispade.js"></script>
+    <script type="text/javascript" src="/application.js"></script>
+    <script type="text/javascript" src="/tests.js"></script>
+    <script type="text/javascript">
+      window.ENV = window.ENV || {};
+      ENV.UNIT_TESTING = true;
+
+      minispade.require('tests/jasmine/jasmine');
+      minispade.require('tests/jasmine/jasmine-html');
+
+      minispade.require('nikita');
+
+      minispade.require('tests/spec_helper');
+
+      var modules = minispade.modules;
+      for (var module in modules) {
+        if (modules.hasOwnProperty(module)) {
+          if (module.match(/^tests\/.*_spec$/)) {
+            minispade.require(module);
+          }
+        }
+      }
+    </script>
+  </head>
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var trivialReporter = new jasmine.TrivialReporter();
+
+      jasmineEnv.addReporter(trivialReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return trivialReporter.specFilter(spec);
+      };
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
+  </script>
+  <body>
+  </body>
+</html>

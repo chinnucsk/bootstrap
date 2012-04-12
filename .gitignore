@@ -1,0 +1,6 @@
+tmp
+public/specs*
+bin
+.bundle
+.DS_Store
+.sass-cache

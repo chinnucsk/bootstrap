@@ -1,0 +1,1 @@
+require('nikita/models/person');

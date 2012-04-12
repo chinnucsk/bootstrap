@@ -1,0 +1,10 @@
+<p>
+  <label for="title">Title:</label>
+  {{view Ember.TextField id="title" valueBinding="controller.content.name"}}
+</p>
+<p>
+  <label for="description">Description:</label>
+  {{view Ember.TextArea id="description" valueBinding="controller.content.description"}}
+</p>
+
+<button {{action save target="controller"}}>Create</button>

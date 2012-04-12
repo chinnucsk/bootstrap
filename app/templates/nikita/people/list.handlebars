@@ -1,0 +1,9 @@
+<ul id="my_people">
+  {{#each controller}}
+    <li>{{name}}</li>
+  {{/each}}
+  <li>
+    <button {{action create target="controller"}}>Create Person</button>
+  </li>
+</ul>
+<div class="clear"></div>
